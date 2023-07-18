@@ -1,6 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { searchMovies } from '../api/Api';
 import styles from './Movies.module.css';
 
@@ -54,5 +54,9 @@ function Movies() {
     </div>
   );
 }
+
+Movies.propTypes = {
+  location: PropTypes.object.isRequired,
+};
 
 export default Movies;

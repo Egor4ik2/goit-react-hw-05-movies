@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getTrendingMovies } from '../api/Api';
 import styles from './Home.module.css';
 
@@ -26,5 +27,9 @@ function Home() {
     </div>
   );
 }
+
+Home.propTypes = {
+  location: PropTypes.object.isRequired,
+};
 
 export default Home;

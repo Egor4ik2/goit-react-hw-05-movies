@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getMovieDetails, getMovieCredits, getMovieReviews } from '../api/Api';
 import Cast from '../Cast/Cast';
 import Reviews from '../Reviews/Reviews';
@@ -129,5 +130,9 @@ function MovieDetails() {
     </div>
   );
 }
+
+MovieDetails.propTypes = {
+  movieId: PropTypes.string.isRequired,
+};
 
 export default MovieDetails;
