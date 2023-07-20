@@ -1,92 +1,103 @@
-
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .goBackButton {
-    font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-  
-  .title {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .poster {
-    width: 250px;
-    height: 375px;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
-  
-  .placeholderPoster {
-    width: 250px;
-    height: 375px;
-    background-color: #ccc;
-    margin-bottom: 10px;
-  }
-  
-  .userScore {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .overview {
-    margin-bottom: 10px;
-  }
-  
-  .genresTitle {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .genresList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .genre {
-    margin-bottom: 5px;
-  }
-  
-  .additionalInfoTitle {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .additionalInfoList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .additionalInfoLink {
-    text-decoration: none;
-    color: #007bff;
-    margin-bottom: 5px;
-    display: inline-block;
-  }
-  
-  .castContainer {
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .reviewsContainer {
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .noReviews {
-    color: red;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.poster {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.placeholderPoster {
+  width: 100%;
+  max-width: 400px;
+  height: 600px;
+  margin-bottom: 10px;
+}
+
+.userScore {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.overview {
+  margin-bottom: 10px;
+}
+
+.genresTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.genresList {
+  list-style: none;
+  padding: 0;
+}
+
+.genre {
+  display: inline-block;
+  margin-right: 5px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.additionalInfoTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.additionalInfoList {
+  list-style: none;
+  padding: 0;
+}
+
+.additionalInfoLink {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.additionalInfoLink:hover {
+  text-decoration: underline;
+}
+
+.castContainer {
+  margin-top: 20px;
+}
+
+.reviewsContainer {
+  margin-top: 20px;
+}
+
+.noReviews {
+  font-style: italic;
+  color: #888;
+}
+
+.goBackButton {
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.goBackButton:hover {
+  background-color: #0056b3;
+}

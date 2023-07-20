@@ -1,21 +1,24 @@
-
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .title {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .movieItem {
-    margin-bottom: 10px;
-  }
-  
-  .movieLink {
-    text-decoration: none;
-    color: #333;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.movieItem {
+  margin-bottom: 10px;
+}
+
+.movieLink {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.movieLink:hover {
+  text-decoration: underline;
+}

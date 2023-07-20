@@ -1,43 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { getMovieCredits } from '../api/Api';
-import styles from './Cast.module.css'
+import styles from './Cast.module.css';
 
-function Cast() {
-  const { movieId } = useParams();
-  const [cast, setCast] = useState([]);
-
-  useEffect(() => {
-    const fetchMovieCredits = async () => {
-      const castData = await getMovieCredits(movieId);
-      setCast(castData);
-    };
-
-    fetchMovieCredits();
-  }, [movieId]);
-
-  if (cast.length === 0) {
-    return <div>Loading...</div>;
-  }
-
+function Cast({ cast, movieId, defaultImg }) {
   return (
-    <div>
-      <h2 className={styles.title}>Cast</h2>
-      <ul className={styles.list}>
-        {cast.map((actor) => (
-          <li key={actor.id} className={styles.item}>
-            <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} className={styles.image}/>
-            <p className={styles.name}>{actor.name}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className={styles.castList}>
+      {cast.map((actor) => (
+        <li key={actor.id} className={styles.castItem}>
+          <img
+            src={actor.profile_path ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}` : defaultImg}
+            alt={actor.name}
+            width={200}
+          />
+          <p className={styles.actorName}>{actor.name}</p>
+          <p className={styles.characterName}>as {actor.character}</p>
+        </li>
+      ))}
+    </ul>
   );
 }
 
 Cast.propTypes = {
+  cast: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      character: PropTypes.string.isRequired,
+      profile_path: PropTypes.string,
+    })
+  ).isRequired,
   movieId: PropTypes.string.isRequired,
+  defaultImg: PropTypes.string.isRequired,
 };
 
 export default Cast;

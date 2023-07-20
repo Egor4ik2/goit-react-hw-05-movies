@@ -1,29 +1,17 @@
+.castList {
+  list-style: none;
+  padding: 0;
+}
 
-.castContainer {
-    margin-top: 20px;
-  }
-  
-  .list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .image {
-    width: 50px;
-    height: 75px;
-    object-fit: cover;
-    margin-right: 10px;
-  }
-  
-  .name {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
+.castItem {
+  margin-bottom: 10px;
+}
+
+.actorName {
+  font-weight: bold;
+}
+
+.characterName {
+  font-style: italic;
+  color: #888;
+}

@@ -1,6 +1,6 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { getTrendingMovies } from '../api/Api';
 import styles from './Home.module.css';
 
@@ -18,18 +18,16 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Popular Movies</h1>
+      <h1 className={styles.title}>Popular today!</h1>
       {trendingMovies.map((movie) => (
         <div key={movie.id} className={styles.movieItem}>
-          <Link to={`/movies/${movie.id}`} className={styles.movieLink}>{movie.title}</Link>
+          <Link to={`/movies/${movie.id}`} className={styles.movieLink}>
+            {movie.title}
+          </Link>
         </div>
       ))}
     </div>
   );
 }
-
-Home.propTypes = {
-  location: PropTypes.object.isRequired,
-};
 
 export default Home;

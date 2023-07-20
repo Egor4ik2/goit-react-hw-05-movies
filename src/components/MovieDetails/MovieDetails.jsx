@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getMovieDetails, getMovieCredits, getMovieReviews } from '../api/Api';
 import Cast from '../Cast/Cast';
 import Reviews from '../Reviews/Reviews';
 import styles from './MoviesDetails.module.css';
+
+const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=500x700';
 
 function MovieDetails() {
   const { movieId } = useParams();
@@ -17,8 +20,12 @@ function MovieDetails() {
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
-      const movieData = await getMovieDetails(movieId);
-      setMovie(movieData);
+      try {
+        const movieData = await getMovieDetails(movieId);
+        setMovie(movieData);
+      } catch (error) {
+        console.error('Error fetching movie details:', error);
+      }
     };
 
     fetchMovieDetails();
@@ -32,8 +39,12 @@ function MovieDetails() {
     }
 
     if (castData.length === 0) {
-      const cast = await getMovieCredits(movieId);
-      setCastData(cast);
+      try {
+        const cast = await getMovieCredits(movieId);
+        setCastData(cast);
+      } catch (error) {
+        console.error('Error fetching movie credits:', error);
+      }
     }
 
     window.history.pushState(null, null, `/movies/${movieId}/cast`);
@@ -47,8 +58,12 @@ function MovieDetails() {
     }
 
     if (reviews.length === 0) {
-      const movieReviews = await getMovieReviews(movieId);
-      setReviews(movieReviews);
+      try {
+        const movieReviews = await getMovieReviews(movieId);
+        setReviews(movieReviews);
+      } catch (error) {
+        console.error('Error fetching movie reviews:', error);
+      }
     }
 
     window.history.pushState(null, null, `/movies/${movieId}/reviews`);
@@ -62,16 +77,20 @@ function MovieDetails() {
     return <div>Loading...</div>;
   }
 
-  const navigateHome = () => {
-    navigate('/');
+ 
+  const backLink = location.state?.from ?? '/';
+
+
+  const handleGoBack = () => {
+    navigate(backLink);
   };
 
   return (
     <div className={styles.container}>
-      <button onClick={navigateHome} className={styles.goBackButton}>Go back</button>
+      <button onClick={handleGoBack} className={styles.goBackButton}>Go back</button>
       <h2 className={styles.title}>{movie.title}</h2>
       <img
-        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+        src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : defaultImg}
         alt={movie.title}
         onLoad={handleImageLoad}
         className={styles.poster}
@@ -114,7 +133,7 @@ function MovieDetails() {
 
       {castData.length > 0 && !location.pathname.endsWith('/reviews') && (
         <div className={styles.castContainer}>
-          <Cast cast={castData} />
+          <Cast cast={castData} movieId={movieId} defaultImg={defaultImg} />
         </div>
       )}
 
