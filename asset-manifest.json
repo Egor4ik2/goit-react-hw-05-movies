@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-05-movies/static/css/main.7acaea2f.css",
-    "main.js": "/goit-react-hw-05-movies/static/js/main.210c5e52.js",
-    "static/css/433.85a5f470.chunk.css": "/goit-react-hw-05-movies/static/css/433.85a5f470.chunk.css",
-    "static/js/433.1a3e5798.chunk.js": "/goit-react-hw-05-movies/static/js/433.1a3e5798.chunk.js",
-    "static/css/653.6d1c2d48.chunk.css": "/goit-react-hw-05-movies/static/css/653.6d1c2d48.chunk.css",
-    "static/js/653.b335f001.chunk.js": "/goit-react-hw-05-movies/static/js/653.b335f001.chunk.js",
-    "static/css/311.a102e544.chunk.css": "/goit-react-hw-05-movies/static/css/311.a102e544.chunk.css",
-    "static/js/311.f3eeb318.chunk.js": "/goit-react-hw-05-movies/static/js/311.f3eeb318.chunk.js",
-    "static/css/76.5e7dbe25.chunk.css": "/goit-react-hw-05-movies/static/css/76.5e7dbe25.chunk.css",
-    "static/js/76.d308275e.chunk.js": "/goit-react-hw-05-movies/static/js/76.d308275e.chunk.js",
+    "main.css": "/goit-react-hw-05-movies/static/css/main.8ba2de3e.css",
+    "main.js": "/goit-react-hw-05-movies/static/js/main.43ab0638.js",
+    "static/css/433.b7c45bc3.chunk.css": "/goit-react-hw-05-movies/static/css/433.b7c45bc3.chunk.css",
+    "static/js/433.d77a428a.chunk.js": "/goit-react-hw-05-movies/static/js/433.d77a428a.chunk.js",
+    "static/css/653.bb7b03a7.chunk.css": "/goit-react-hw-05-movies/static/css/653.bb7b03a7.chunk.css",
+    "static/js/653.6a28f0f0.chunk.js": "/goit-react-hw-05-movies/static/js/653.6a28f0f0.chunk.js",
+    "static/css/311.947e5bcc.chunk.css": "/goit-react-hw-05-movies/static/css/311.947e5bcc.chunk.css",
+    "static/js/311.1eadddf7.chunk.js": "/goit-react-hw-05-movies/static/js/311.1eadddf7.chunk.js",
+    "static/css/76.27f6da71.chunk.css": "/goit-react-hw-05-movies/static/css/76.27f6da71.chunk.css",
+    "static/js/76.7727e1de.chunk.js": "/goit-react-hw-05-movies/static/js/76.7727e1de.chunk.js",
     "index.html": "/goit-react-hw-05-movies/index.html",
-    "main.7acaea2f.css.map": "/goit-react-hw-05-movies/static/css/main.7acaea2f.css.map",
-    "main.210c5e52.js.map": "/goit-react-hw-05-movies/static/js/main.210c5e52.js.map",
-    "433.85a5f470.chunk.css.map": "/goit-react-hw-05-movies/static/css/433.85a5f470.chunk.css.map",
-    "433.1a3e5798.chunk.js.map": "/goit-react-hw-05-movies/static/js/433.1a3e5798.chunk.js.map",
-    "653.6d1c2d48.chunk.css.map": "/goit-react-hw-05-movies/static/css/653.6d1c2d48.chunk.css.map",
-    "653.b335f001.chunk.js.map": "/goit-react-hw-05-movies/static/js/653.b335f001.chunk.js.map",
-    "311.a102e544.chunk.css.map": "/goit-react-hw-05-movies/static/css/311.a102e544.chunk.css.map",
-    "311.f3eeb318.chunk.js.map": "/goit-react-hw-05-movies/static/js/311.f3eeb318.chunk.js.map",
-    "76.5e7dbe25.chunk.css.map": "/goit-react-hw-05-movies/static/css/76.5e7dbe25.chunk.css.map",
-    "76.d308275e.chunk.js.map": "/goit-react-hw-05-movies/static/js/76.d308275e.chunk.js.map"
+    "main.8ba2de3e.css.map": "/goit-react-hw-05-movies/static/css/main.8ba2de3e.css.map",
+    "main.43ab0638.js.map": "/goit-react-hw-05-movies/static/js/main.43ab0638.js.map",
+    "433.b7c45bc3.chunk.css.map": "/goit-react-hw-05-movies/static/css/433.b7c45bc3.chunk.css.map",
+    "433.d77a428a.chunk.js.map": "/goit-react-hw-05-movies/static/js/433.d77a428a.chunk.js.map",
+    "653.bb7b03a7.chunk.css.map": "/goit-react-hw-05-movies/static/css/653.bb7b03a7.chunk.css.map",
+    "653.6a28f0f0.chunk.js.map": "/goit-react-hw-05-movies/static/js/653.6a28f0f0.chunk.js.map",
+    "311.947e5bcc.chunk.css.map": "/goit-react-hw-05-movies/static/css/311.947e5bcc.chunk.css.map",
+    "311.1eadddf7.chunk.js.map": "/goit-react-hw-05-movies/static/js/311.1eadddf7.chunk.js.map",
+    "76.27f6da71.chunk.css.map": "/goit-react-hw-05-movies/static/css/76.27f6da71.chunk.css.map",
+    "76.7727e1de.chunk.js.map": "/goit-react-hw-05-movies/static/js/76.7727e1de.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.210c5e52.js"
+    "static/css/main.8ba2de3e.css",
+    "static/js/main.43ab0638.js"
   ]
 }
