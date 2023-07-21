@@ -68,7 +68,7 @@ function Movies() {
 }
 
 Movies.propTypes = {
-  location: PropTypes.object.isRequired,
+  location: PropTypes.object
 };
 
 export default Movies;

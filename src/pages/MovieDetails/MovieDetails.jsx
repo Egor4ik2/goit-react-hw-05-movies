@@ -1,3 +1,4 @@
+// MovieDetails.jsx
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -15,10 +16,17 @@ function MovieDetails() {
   const [castData, setCastData] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [showCast, setShowCast] = useState(false);
+  const [showReviews, setShowReviews] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
+  
+    if (!movieId) {
+      return;
+    }
+
     const fetchMovieDetails = async () => {
       try {
         const movieData = await getMovieDetails(movieId);
@@ -34,11 +42,10 @@ function MovieDetails() {
   const handleShowCast = async (event) => {
     event.preventDefault();
 
-    if (reviews.length > 0) {
-      setReviews([]);
-    }
+    setShowReviews(false);
+    setShowCast(!showCast);
 
-    if (castData.length === 0) {
+    if (!showCast && castData.length === 0) {
       try {
         const cast = await getMovieCredits(movieId);
         setCastData(cast);
@@ -51,11 +58,10 @@ function MovieDetails() {
   const handleShowReviews = async (event) => {
     event.preventDefault();
 
-    if (castData.length > 0) {
-      setCastData([]);
-    }
+    setShowCast(false);
+    setShowReviews(!showReviews);
 
-    if (reviews.length === 0) {
+    if (!showReviews && reviews.length === 0) {
       try {
         const movieReviews = await getMovieReviews(movieId);
         setReviews(movieReviews);
@@ -69,15 +75,15 @@ function MovieDetails() {
     setIsImageLoaded(true);
   };
 
-  if (!movie) {
-    return <div>Loading...</div>;
-  }
-
   const backLink = location.state?.from ?? '/';
 
   const handleGoBack = () => {
     navigate(backLink);
   };
+
+  if (!movie) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={styles.container}>
@@ -104,48 +110,44 @@ function MovieDetails() {
       <p className={styles.userScore}>User Score: {movie.vote_average}</p>
       <p className={styles.overview}>Overview: {movie.overview}</p>
 
-      <h3 className={styles.genresTitle}>Genres:</h3>
-      <ul className={styles.genresList}>
-        {movie.genres.map((genre) => (
-          <li key={genre.id} className={styles.genre}>{genre.name}</li>
-        ))}
-      </ul>
-
-      <h3 className={styles.additionalInfoTitle}>Additional Information:</h3>
+      <h3 className={styles.additionalInfoTitle}>Info:</h3>
       <ul className={styles.additionalInfoList}>
         <li>
           <Link to="#" onClick={handleShowCast} className={styles.additionalInfoLink}>
-            Show Cast
+           Show cast
           </Link>
         </li>
         <li>
           <Link to="#" onClick={handleShowReviews} className={styles.additionalInfoLink}>
-            Show Reviews
+            Show review
           </Link>
         </li>
       </ul>
 
       <div className={styles.castContainer}>
-        {castData.length > 0 && !location.pathname.endsWith('/reviews') ? (
-          <Cast cast={castData} movieId={movieId} defaultImg={defaultImg} />
-        ) : location.pathname.endsWith('/cast') && castData.length === 0 && (
-          <p className={styles.noCast}>No cast.</p>
+    
+        {showCast && castData.length > 0 && <Cast cast={castData} defaultImg={defaultImg} />}
+       
+        {showCast && castData.length === 0 && (
+          <p className={styles.noCast}>no cast.</p>
         )}
       </div>
 
       <div className={styles.reviewsContainer}>
-        {reviews.length > 0 && !location.pathname.endsWith('/cast') ? (
-          <Reviews reviews={reviews} />
-        ) : location.pathname.endsWith('/reviews') && reviews.length === 0 && (
-          <p className={styles.noReviews}>No review.</p>
+    
+        {showReviews && reviews.length > 0 && <Reviews reviews={reviews} />}
+     
+        {showReviews && reviews.length === 0 && (
+          <p className={styles.noReviews}>no review.</p>
         )}
       </div>
     </div>
   );
 }
 
+
 MovieDetails.propTypes = {
-  movieId: PropTypes.string.isRequired,
+  movieId: PropTypes.string,
 };
 
 export default MovieDetails;
