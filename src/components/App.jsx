@@ -1,27 +1,17 @@
 import React, { lazy, Suspense } from 'react';
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import styles from './App.module.css';
+import Header from './header/Header';
 
-const Home = lazy(() => import('./Home/Home'));
-const Movies = lazy(() => import('./Movies/Movies'));
-const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
+const Home = lazy(() => import('../pages/Home/Home'));
+const Movies = lazy(() => import('../pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));
 
 function App() {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/movies">Movies</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>

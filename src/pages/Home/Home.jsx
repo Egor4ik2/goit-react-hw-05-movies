@@ -1,7 +1,6 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getTrendingMovies } from '../api/Api';
+import { getTrendingMovies } from '../../components/api/Api';
 import styles from './Home.module.css';
 
 function Home() {
@@ -19,13 +18,15 @@ function Home() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Popular today!</h1>
-      {trendingMovies.map((movie) => (
-        <div key={movie.id} className={styles.movieItem}>
-          <Link to={`/movies/${movie.id}`} className={styles.movieLink}>
-            {movie.title}
-          </Link>
-        </div>
-      ))}
+      <div className={styles.moviesList}>
+        {trendingMovies.map((movie) => (
+          <article key={movie.id} className={styles.movieItem}>
+            <Link to={`/movies/${movie.id}`} className={styles.movieLink}>
+              <h2>{movie.title}</h2>
+            </Link>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }

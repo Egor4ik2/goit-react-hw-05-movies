@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { searchMovies } from '../api/Api';
+import { searchMovies } from '../../components/api/Api';
 import styles from './Movies.module.css';
+import MovieList from '../../components/MovieList/MovieList';
 
 function Movies() {
   const location = useLocation();
@@ -12,23 +13,19 @@ function Movies() {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
 
-  const updateQuery = (newQuery) => {
-    setQuery(newQuery);
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set('query', newQuery);
-    navigate({ search: searchParams.toString() });
-  };
-
   const handleInputChange = (event) => {
     const newQuery = event.target.value;
-    updateQuery(newQuery);
+    setQuery(newQuery);
   };
 
-  const handleSearchClick = async (event) => {
+  const handleSearchSubmit = async (event) => {
     event.preventDefault();
     try {
       const moviesData = await searchMovies(query);
       setMovies(moviesData);
+
+      queryParams.set('query', query);
+      navigate({ search: queryParams.toString() });
     } catch (error) {
       console.error('Error fetching movies:', error);
     }
@@ -38,28 +35,32 @@ function Movies() {
     navigate(`/movies/${movieId}`, { state: { from: location } });
   };
 
+  useEffect(() => {
+    const handleSearchSubmitOnMount = async () => {
+      if (movies.length === 0 && initialQuery) {
+        try {
+          const moviesData = await searchMovies(initialQuery);
+          setMovies(moviesData);
+        } catch (error) {
+          console.error('Error fetching movies:', error);
+        }
+      }
+    };
+
+    handleSearchSubmitOnMount();
+  }, [movies, initialQuery]);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Find film</h1>
-      <form onSubmit={handleSearchClick}>
+      <form onSubmit={handleSearchSubmit}>
         <input type="text" value={query} onChange={handleInputChange} className={styles.input} />
-        <button type="submit" className={styles.button}>Поиск</button>
+        <button type="submit" className={styles.button}>
+          Поиск
+        </button>
       </form>
 
-      {movies.length > 0 && ( 
-        <>
-          <h2 className={styles.results}>Results:</h2>
-          <ul className={styles.list}>
-            {movies.map((movie) => (
-              <li key={movie.id} className={styles.item}>
-                <button onClick={() => handleMovieClick(movie.id)} className={styles.button}>
-                  {movie.title}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      {movies.length > 0 && <MovieList movies={movies} handleMovieClick={handleMovieClick} />}
 
       {movies.length === 0 && query && <p className={styles.noResults}>Films not found!</p>}
     </div>

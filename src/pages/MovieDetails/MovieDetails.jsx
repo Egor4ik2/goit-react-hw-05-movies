@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getMovieDetails, getMovieCredits, getMovieReviews } from '../api/Api';
-import Cast from '../Cast/Cast';
-import Reviews from '../Reviews/Reviews';
+import { getMovieDetails, getMovieCredits, getMovieReviews } from '../../components/api/Api';
+import Cast from '../../components/Cast/Cast';
+import Reviews from '../../components/Reviews/Reviews';
 import styles from './MoviesDetails.module.css';
 
 const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=500x700';
@@ -46,8 +46,6 @@ function MovieDetails() {
         console.error('Error fetching movie credits:', error);
       }
     }
-
-    window.history.pushState(null, null, `/movies/${movieId}/cast`);
   };
 
   const handleShowReviews = async (event) => {
@@ -65,8 +63,6 @@ function MovieDetails() {
         console.error('Error fetching movie reviews:', error);
       }
     }
-
-    window.history.pushState(null, null, `/movies/${movieId}/reviews`);
   };
 
   const handleImageLoad = () => {
@@ -77,9 +73,7 @@ function MovieDetails() {
     return <div>Loading...</div>;
   }
 
- 
   const backLink = location.state?.from ?? '/';
-
 
   const handleGoBack = () => {
     navigate(backLink);
@@ -131,21 +125,21 @@ function MovieDetails() {
         </li>
       </ul>
 
-      {castData.length > 0 && !location.pathname.endsWith('/reviews') && (
-        <div className={styles.castContainer}>
+      <div className={styles.castContainer}>
+        {castData.length > 0 && !location.pathname.endsWith('/reviews') ? (
           <Cast cast={castData} movieId={movieId} defaultImg={defaultImg} />
-        </div>
-      )}
+        ) : location.pathname.endsWith('/cast') && castData.length === 0 && (
+          <p className={styles.noCast}>No cast.</p>
+        )}
+      </div>
 
-      {reviews.length > 0 && !location.pathname.endsWith('/cast') && (
-        <div className={styles.reviewsContainer}>
+      <div className={styles.reviewsContainer}>
+        {reviews.length > 0 && !location.pathname.endsWith('/cast') ? (
           <Reviews reviews={reviews} />
-        </div>
-      )}
-
-      {location.pathname.endsWith('/reviews') && reviews.length === 0 && (
-        <p className={styles.noReviews}>We don't have reviews for this movie.</p>
-      )}
+        ) : location.pathname.endsWith('/reviews') && reviews.length === 0 && (
+          <p className={styles.noReviews}>No review.</p>
+        )}
+      </div>
     </div>
   );
 }
