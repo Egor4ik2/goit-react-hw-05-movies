@@ -1,6 +1,6 @@
 // MovieDetails.jsx
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getMovieDetails, getMovieCredits, getMovieReviews } from '../../components/api/Api';
@@ -22,7 +22,6 @@ function MovieDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-  
     if (!movieId) {
       return;
     }
@@ -124,19 +123,17 @@ function MovieDetails() {
         </li>
       </ul>
 
+      <Outlet />
+
       <div className={styles.castContainer}>
-    
         {showCast && castData.length > 0 && <Cast cast={castData} defaultImg={defaultImg} />}
-       
         {showCast && castData.length === 0 && (
           <p className={styles.noCast}>no cast.</p>
         )}
       </div>
 
       <div className={styles.reviewsContainer}>
-    
         {showReviews && reviews.length > 0 && <Reviews reviews={reviews} />}
-     
         {showReviews && reviews.length === 0 && (
           <p className={styles.noReviews}>no review.</p>
         )}
@@ -144,7 +141,6 @@ function MovieDetails() {
     </div>
   );
 }
-
 
 MovieDetails.propTypes = {
   movieId: PropTypes.string,
